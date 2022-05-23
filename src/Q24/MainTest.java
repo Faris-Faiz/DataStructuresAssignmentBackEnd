@@ -25,13 +25,15 @@ public class MainTest {
         if(numTitans>6){
             System.out.println("Invalid num of titans");
         }else {
-            t.generateTitans(numTitans);
+            t.generateTitan(numTitans);
 
-            for (int i = 0; i < numTitans; i++) {
-                m.findPath();
-                System.out.println();
-            }
+
+//            for (int i = 0; i < numTitans; i++) {
+//                m.findPath();
+//                System.out.println();
+//            }
             System.out.println();
         }
+        t.generateTitan(4);
     }
 }

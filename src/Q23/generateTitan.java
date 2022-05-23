@@ -3,11 +3,22 @@ package Q23;
 import java.util.*;
 
 public class generateTitan {
-    private Scanner input;
+  
     private int numTitans;
+    private int[] indexed ;
+    private ArrayList<Pair> sorted;
+    private ArrayList<Pair> data = new ArrayList<>();
+    private int distanceTravelled =0;
+    private  PriorityQueue<Pair> pq;
+
 
     public generateTitan() {
     }
+
+    public ArrayList<Pair> getSorted() {
+        return sorted;
+    }
+
 
     public int getNumTitans() {
         return numTitans;
@@ -17,35 +28,79 @@ public class generateTitan {
      * Method that generates random number of titans and prints it out
      * it also calculates distance taken to get to the titan
      */
-    public void generateTitans(int numTitans) {
+    public ArrayList<Pair> generateTitan(int numTitans) {
+        this.numTitans = numTitans;
 
-
-        int distance = 0;
-
-
-        Pair[] data = new Pair[numTitans];
-        int[] indexed = new int[numTitans];
-        PriorityQueue<Pair> pq = new PriorityQueue<Pair>(numTitans, new TitanComparator());
 
 
         for (int i = 0; i < numTitans; i++) {
-            data[i] = new Pair(i + 1, randomTitanType());
-            pq.add(data[i]);
+            data.add(new Pair(i + 1, randomTitanType()));
+
+
         }
 
-        System.out.println(Arrays.toString(data));
+        System.out.println(data);
+        return data;
 
 
+    }
+
+    /**
+     * Method that sorts titan according to its priority
+     * @param data an unsorted list of titans
+     * @return a sorted queue of titans
+     */
+
+    public PriorityQueue<Pair> sortTitan(ArrayList<Pair> data){
+
+        pq = new PriorityQueue<Pair>(data.size(), new TitanComparator());
+        for(int i=0; i< data.size();i++){
+            pq.add(data.get(i));
+        }
+        System.out.println(pq);
+        return pq;
+
+    }
+
+    /**
+     * add more random titans to the list
+     * @param num number of titans to be added
+     * @param data a list with the added titans
+     */
+    public void addTitan(int num, ArrayList<Pair> data){
+        this.data = data;
+
+        for (int i = numTitans; i < numTitans+num; i++) {
+            data.add(new Pair(i +1, randomTitanType()));
+        }
+
+        this.numTitans = numTitans+num;
+        System.out.println(data);
+
+
+    }
+
+    /**
+     * Calculates distance taken to kill the titans
+     * @param pq accepts a sorted list of titans
+     */
+    public void calculateDistance(PriorityQueue<Pair> pq) {
+
+        indexed = new int[getNumTitans()];
+        sorted= new ArrayList<>();
         while (!pq.isEmpty()) {
-            for (int i = 0; i < indexed.length; i++) {
-                indexed[i] = pq.poll().getIndex();
+            for (int i = 0; i < getNumTitans(); i++) {
+                sorted.add(pq.poll());
+                indexed[i] = sorted.get(i).getIndex();
                 System.out.print("Titan " + indexed[i] + "->");
             }
 
-
         }
-        distance = getSumDiference(indexed);
-        System.out.println("\nTotal distance moved: " + distance + "\n");
+
+
+        distanceTravelled = getSumDiference(indexed);
+        System.out.println("\nTotal distance moved: " + distanceTravelled + "\n");
+
 
 
     }
@@ -91,7 +146,7 @@ public class generateTitan {
      *
      * @return
      */
-    public static Titan randomTitanType() {
+    private Titan randomTitanType() {
         Random generator = new Random();
         double max = 99;
         double min = 1;
@@ -105,6 +160,7 @@ public class generateTitan {
         Titan patternType = getTitan(arrayOfTitanType);
         return patternType;
     }
+
 
 
 }
