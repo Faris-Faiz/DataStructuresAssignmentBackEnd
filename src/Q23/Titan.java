@@ -1,5 +1,7 @@
 package Q23;
 
+import Q24.Vertex;
+
 public class Titan {
 
     private int height;
@@ -8,6 +10,8 @@ public class Titan {
     protected int risk;
     private boolean climb;
     private String pattern;
+    private Vertex location;
+    private Vertex[] path = new Vertex[3];
 
 
     public Titan() {
@@ -21,6 +25,27 @@ public class Titan {
         this.climb = climb;
 
     }
+
+
+    public Vertex[] getPath() {
+        return path;
+    }
+
+    public void setPath(Vertex[] path) {
+        path[0] = getLocation();
+        this.path = path;
+    }
+
+
+    public Vertex getLocation() {
+        return location;
+    }
+
+    public void setLocation(Vertex location) {
+        this.location = location;
+    }
+
+
 
     public int getHeight() {
         return height;
@@ -85,6 +110,7 @@ public class Titan {
     public String toString() {
         return "\nTitan{" + "height=" + height + ", legs=" + legs + ", speed=" + speed + ", climb=" + climb + ", pattern='" + pattern + '\'' + ", risk=" + getRisk() + '}';
     }
+
 
 
 }

@@ -24,7 +24,7 @@ public class VertexList {
 
         start.f = start.g + start.calculateHeuristic(target);
         openList.add(start);
-        allList.add(start);
+
 
 
         while(!openList.isEmpty()){
