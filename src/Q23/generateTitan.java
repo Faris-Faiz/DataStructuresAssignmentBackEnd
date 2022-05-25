@@ -3,7 +3,7 @@ package Q23;
 import java.util.*;
 
 public class generateTitan {
-  
+
     private int numTitans;
     private int[] indexed ;
     private ArrayList<Pair> sorted;
