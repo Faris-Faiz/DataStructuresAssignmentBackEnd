@@ -11,7 +11,7 @@ public class MainTest {
         //print map first
         VertexList res = new VertexList();
         generateMap m = new generateMap();
-        m.printMap();
+        m.createMap();
         //generate titans
         generateTitan t = new generateTitan();
 

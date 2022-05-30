@@ -8,7 +8,7 @@ import java.util.PriorityQueue;
 public class VertexList {
     protected PriorityQueue<Vertex> closedList = new PriorityQueue<>();
     protected PriorityQueue<Vertex> openList = new PriorityQueue<>();
-    protected PriorityQueue<Vertex> allList = new PriorityQueue<>();
+    protected ArrayList<Vertex> allList = new ArrayList<>();
 
 
     public VertexList(){}

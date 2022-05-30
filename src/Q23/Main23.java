@@ -16,7 +16,7 @@ public class Main23 {
         //print map first
         VertexList res = new VertexList();
         generateMap m = new generateMap();
-        m.printMap();
+        m.createMap();
         //generate titans
         generateTitan t = new generateTitan();
 
@@ -29,7 +29,7 @@ public class Main23 {
         int numTitans = input.nextInt();
 
 
-        m.getVertex();
+        m.getTitanVertex();
 
         if (numTitans > m.getArray().length) {
             System.out.println("Invalid num of titans");
@@ -48,9 +48,9 @@ public class Main23 {
             for (int i = 0; i < t.getNumTitans(); i++) {
                 //set random starting location
                 Titan titan = t.getSorted().get(i).getValue();
-                titan.setLocation(m.getVertex());
+                titan.setLocation(m.getTitanVertex());
                 //print out lcoation
-                System.out.println("Staring location: " + titan.getLocation());
+                System.out.println("Starting location: " + titan.getLocation());
                 //finds shortest path to the titan
                 //set path of titan
                titan.setPath(m.getArray());
@@ -65,6 +65,7 @@ public class Main23 {
                     System.out.println("Time:" + time);
                     if (time % 2 == 0) {
                         //set location(i) to array(i)
+
                         titan.setLocation(titan.getPath()[j]);
                         System.out.println("Titan" + t.getSorted().get(i).getIndex() + " Move: " + titan.getLocation());
                         j++;
@@ -75,6 +76,7 @@ public class Main23 {
                         System.out.println("Player moves");
                         //how to configure players moves?
                         m.findPath(titan.getLocation());
+                        //player.setLocation(titan.currentLocation)
 
                     }
                     time++;
