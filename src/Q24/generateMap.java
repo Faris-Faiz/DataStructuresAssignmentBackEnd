@@ -1,26 +1,41 @@
 package Q24;
 /*https://stackabuse.com/graphs-in-java-a-star-algorithm/*/
+import extraFeature5.Building;
+import extraFeature5.Tree;
+
 import java.util.*;
 
 public class generateMap {
+
     private Vertex head;
     private Vertex n1;
     private Vertex n2;
     private Vertex n3;
     private Vertex n4;
     private Vertex n5;
-    private Vertex n6;
+    private Vertex n6,building;
     private Vertex target;
-    private   VertexList res= new VertexList();
+    private  VertexList res= new VertexList();
     private Vertex[] Nodesarray;
+    private ArrayList<Vertex> buildings = new ArrayList<>();
+    private ArrayList<Vertex> tree = new ArrayList<>();
 
 
     public Vertex[] getArray() {
         return Nodesarray;
     }
 
+    public ArrayList<Vertex> getBuildings() {
+        return buildings;
+    }
 
+    public ArrayList<Vertex> getTree() {
+        return tree;
+    }
 
+    //    public Vertex getN7() {
+//        return n7;
+//    }
 
     //map does not include barries
     //maybe make a function that states where the barriers are and generate
@@ -33,9 +48,7 @@ public class generateMap {
     /***
      * PrintsMap with all the Vertexs and branches set already
      */
-    public void printMap() {
-
-
+    public void createMap() {
 
 
         //instantiate the head of the graph with 3 branches
@@ -43,7 +56,8 @@ public class generateMap {
         //state the origin
         this.head.g = 0;
         //first Vertex with 2 branches
-        n1 = new Vertex(2);
+        n1 = new Vertex(3);
+
         //2nd Vertex with 2 branches
         n2 = new Vertex(2);
         //3rdd Vertex with 2 branches
@@ -57,17 +71,40 @@ public class generateMap {
         n3.addBranch(1, n2);
 
         n4 = new Vertex(1);
-        n5 = new Vertex(1);
+        n5 = new Tree(1);
         //create the target destination, it doesnt point to anything
         Vertex n6 = new Vertex(0);
 
+        building = new Building(0);
+
         n1.addBranch(7, n4);
+        n1.addBranch(2, building);
         n2.addBranch(4, n5);
         n3.addBranch(6, n4);
 
         n4.addBranch(3, n6);
         n5.addBranch(1, n4);
         n5.addBranch(3, n6);
+
+        this.res.aStar(head, n6);
+
+
+//        for (int i = 0; i < res.allList.size(); i++) {
+//            if (res.allList.get(i) instanceof Building) {
+//                buildings.add(res.allList.get(i));
+//                res.allList.remove(i);
+//            } if (res.allList.get(i) instanceof Tree) {
+//                tree.add(res.allList.get(i));
+//                res.allList.remove(i);
+//
+//
+//            }
+//
+//
+//        }
+
+        Vertex[] all = new Vertex[res.allList.size()];
+        Nodesarray = res.allList.toArray(all);
     }
 
     /**
@@ -81,12 +118,8 @@ public class generateMap {
 
     }
 
-    public void setTitanPath() {
-        //use an arraylist maybe? [1,3,5]
-       int[] path = new int[3];
 
-
-
+    private void sort(){
 
     }
 
@@ -94,23 +127,26 @@ public class generateMap {
 
     /**
      * Returns a random Vertex that holds the place of the titan
-     * @param array accepts an array of Vertexs
+     *
      * @return location of titan
      */
-    public Vertex getVertex() {
-        this.res.aStar(head,n6);
-        Vertex[] all = new Vertex[res.allList.size()];
-        Nodesarray = res.allList.toArray(all);
+    public Vertex getTitanVertex() {
+  //      this.res.aStar(head,n6);
+  //      Vertex[] all = new Vertex[res.allList.size()];
+    //    Nodesarray = res.allList.toArray(all);
+//        Vertex[] all = new Vertex[buildings.size()];
+//        Nodesarray = buildings.toArray(all);
 
         Random generator = new Random();
         int rnd = generator.nextInt(Nodesarray.length);
         return Nodesarray[rnd];
     }
 
+
     @Override
     public String toString() {
-        return "{" +
-                "array=" + Arrays.toString(Nodesarray) +
+        return "generateMap{" +
+                "Nodesarray=" + Arrays.toString(Nodesarray) +
                 '}';
     }
 }
