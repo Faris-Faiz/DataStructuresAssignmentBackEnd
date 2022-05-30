@@ -3,7 +3,25 @@ package Q24;
 import java.util.*;
 
 public class generateMap {
-    private Vertex head,n1,n2,n3,n4,n5,n6;
+    private Vertex head;
+    private Vertex n1;
+    private Vertex n2;
+    private Vertex n3;
+    private Vertex n4;
+    private Vertex n5;
+    private Vertex n6;
+    private Vertex target;
+    private   VertexList res= new VertexList();
+    private Vertex[] Nodesarray;
+
+
+    public Vertex[] getArray() {
+        return Nodesarray;
+    }
+
+
+
+
     //map does not include barries
     //maybe make a function that states where the barriers are and generate
     //a map where the barriers are excluded?
@@ -55,31 +73,44 @@ public class generateMap {
     /**
      * Uses A* algorithm to find the shortest path
      */
-    public void findPath(){
+    public void findPath(Vertex target){
 
-        VertexList res = new VertexList();
-        res.aStar(head,n6);
-        Vertex[] all = new Vertex[res.allList.size()];
-        Vertex[] all2 = res.allList.toArray(all);
-        //Prints out all the Vertexs
-        System.out.println(res.allList.toString());
-        Vertex titan = getVertex(all2);
-        System.out.print("Location of Titan: " + titan);
-        System.out.println();
-        res.printPath(titan);
+        res.printPath(target);
 
 
 
     }
+
+    public void setTitanPath() {
+        //use an arraylist maybe? [1,3,5]
+       int[] path = new int[3];
+
+
+
+
+    }
+
+
 
     /**
      * Returns a random Vertex that holds the place of the titan
      * @param array accepts an array of Vertexs
      * @return location of titan
      */
-    private static Vertex getVertex(Vertex[] array) {
+    public Vertex getVertex() {
+        this.res.aStar(head,n6);
+        Vertex[] all = new Vertex[res.allList.size()];
+        Nodesarray = res.allList.toArray(all);
+
         Random generator = new Random();
-        int rnd = generator.nextInt(array.length);
-        return array[rnd];
+        int rnd = generator.nextInt(Nodesarray.length);
+        return Nodesarray[rnd];
+    }
+
+    @Override
+    public String toString() {
+        return "{" +
+                "array=" + Arrays.toString(Nodesarray) +
+                '}';
     }
 }

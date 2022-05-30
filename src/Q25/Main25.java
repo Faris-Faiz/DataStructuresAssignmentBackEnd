@@ -11,12 +11,22 @@ public class Main25 {
         System.out.print("Enter Marley sentence: ");
         String inputtedString = keyboard.nextLine();
 
-        String decryptedString = decryptString(inputtedString, myHashMap);
+        String encryptedToParadis = encryptToParadis(inputtedString, myHashMap);
 
-        System.out.println("Your Paradis word is: " + decryptedString);
+        System.out.println("Your Paradis word is: " + encryptedToParadis);
+
+        System.out.print("Please input the number of characters you want to offset from the Marley sentence: " );
+        int offsetCharacter = keyboard.nextInt();
+
+        keyboard.close();
+
+        String cipher_text = caesarCipherEncrypter(inputtedString, offsetCharacter);
+
+        System.out.println("Your encrypted text is: " + cipher_text);
+        System.out.println("Unencrypted text: " + caesarCipherDecrypter(cipher_text, offsetCharacter));
     }
 
-    public static String decryptString(String inputtedString, MyHashMap<String, String> myHashMap) {
+    public static String encryptToParadis(String inputtedString, MyHashMap<String, String> myHashMap) {
         char[] inputtedStringArray = inputtedString.toCharArray();
         StringBuilder encryptedString = new StringBuilder();
         boolean capitalize = false;
@@ -34,7 +44,6 @@ public class Main25 {
             encryptedString.append(retrievedCharacter);
         }
 
-
         // to check for brackets, for reversal
         for (int i = 0; i < encryptedString.length(); i++) {
             if (encryptedString.charAt(i) == ')' && inputtedString.contains("(")) {
@@ -49,6 +58,30 @@ public class Main25 {
             }
         }
         return encryptedString.toString();
+    }
+
+
+    // Caesar Cipher
+    public static String caesarCipherEncrypter(String inputtedString, int offsetCharacters){
+        StringBuilder doubleEncryptedString = new StringBuilder();
+        char encryptedCharacter;
+        for(int i = 0; i < inputtedString.length(); i++){
+            encryptedCharacter = inputtedString.charAt(i);
+            encryptedCharacter += offsetCharacters;
+            doubleEncryptedString.append(encryptedCharacter);
+        }
+        return doubleEncryptedString.toString();
+    }
+
+    public static String caesarCipherDecrypter(String cipherText, int offsetCharacters){
+        StringBuilder doubleDecryptedString = new StringBuilder();
+        char encryptedCharacter;
+        for(int i = 0; i < cipherText.length(); i++){
+            encryptedCharacter = cipherText.charAt(i);
+            encryptedCharacter -= offsetCharacters;
+            doubleDecryptedString.append(encryptedCharacter);
+        }
+        return doubleDecryptedString.toString();
     }
 
     public static void characterDictionary(MyHashMap<String, String> myHashMap) {
