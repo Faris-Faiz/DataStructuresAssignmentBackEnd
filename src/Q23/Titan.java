@@ -1,6 +1,6 @@
 package Q23;
 
-import Q24.Vertex;
+import extraFeature5.Vertex;
 
 public class Titan {
 
@@ -10,8 +10,8 @@ public class Titan {
     protected int risk;
     private boolean climb;
     private String pattern;
-    private Vertex location;
-    private Vertex[] path = new Vertex[3];
+    private int location;
+    private Integer[] path = new Integer[5];
 
 
     public Titan() {
@@ -27,21 +27,21 @@ public class Titan {
     }
 
 
-    public Vertex[] getPath() {
+    public Integer[] getPath() {
         return path;
     }
 
-    public void setPath(Vertex[] path) {
+    public void setPath(Integer[] path) {
         path[0] = getLocation();
         this.path = path;
     }
 
 
-    public Vertex getLocation() {
+    public int getLocation() {
         return location;
     }
 
-    public void setLocation(Vertex location) {
+    public void setLocation(int location) {
         this.location = location;
     }
 
