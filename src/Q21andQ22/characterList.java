@@ -10,15 +10,59 @@ import java.io.IOException;
 /**
  * @author Dania
  */
-public class assignmentaotDania {
-    public static void main(String[] args) throws IOException {
+public class characterList {
+    Scanner sc = new Scanner(System.in);
+    private DoublyLinkedList<String> listchar = new DoublyLinkedList<String>();
+    private DoublyLinkedList<characteristics> list = new DoublyLinkedList<characteristics>();
+    private SortList<characteristics> CList = new SortList<characteristics>();
+    private DoublyLinkedList<characteristics> List2 = new DoublyLinkedList<characteristics>();
+    private DoublyLinkedList<characteristics> listSoldier = new DoublyLinkedList<characteristics>();
+    private int StrengthSoldier ;
+    private int AgilitySoldier ;
+    private int CoorSoldier;
+    private int IntelSoldier;
+    private int sumStrengthAgility ;
+    private String soldierChose;
 
-        SortList<characteristics> CList = new SortList<characteristics>();
-        DoublyLinkedList<characteristics> List2 = new DoublyLinkedList<characteristics>();
+
+
+
+    public characterList(){}
+
+    public String getSoldierChose() {
+        return soldierChose;
+    }
+
+    public int getAgilitySoldier() {
+        return AgilitySoldier;
+    }
+
+    public int getCoorSoldier() {
+        return CoorSoldier;
+    }
+
+    public int getIntelSoldier() {
+        return IntelSoldier;
+    }
+
+    public int getStrengthSoldier() {
+        return StrengthSoldier;
+    }
+
+    public int getSumStrengthAgility() {
+        return sumStrengthAgility;
+    }
+
+
+
+
+
+    public void readFile() throws IOException{
+
         FileWriter out = new FileWriter("ereh.txt", true);
         PrintWriter outFile = new PrintWriter(out);
 
-        DoublyLinkedList<String> listchar = new DoublyLinkedList<String>();
+//        DoublyLinkedList<String> listchar = new DoublyLinkedList<String>();
         DoublyLinkedList<characteristics> list = new DoublyLinkedList<characteristics>();
         Scanner sc = new Scanner(System.in);
         Scanner sc2 = new Scanner(System.in);
@@ -86,7 +130,10 @@ public class assignmentaotDania {
 
         }
 
-        System.out.println();
+    }
+
+    public void printList() {
+
         System.out.println("------Soldiers Available------");
         try {
 
@@ -128,6 +175,9 @@ public class assignmentaotDania {
 
         }
 
+    }
+
+    public void sortAbility() {
         while (true) {
 
             List2.clear();
@@ -138,7 +188,7 @@ public class assignmentaotDania {
             String input1 = sc.nextLine();
             if (input1.equalsIgnoreCase("yes")) {
                 System.out.print("\nSorting attribute: ");
-                String attribute = sc2.nextLine();
+                String attribute = sc.nextLine();
                 System.out.println();
                 System.out.println("Sorting from highest to lowest : \n");
                 switch (attribute) {
@@ -308,7 +358,9 @@ public class assignmentaotDania {
                 break;
             }
         }
+    }
 
+    public void searchAbility(){
         while (true) {
             List2.clear();
             System.out.println();
@@ -317,9 +369,9 @@ public class assignmentaotDania {
             if (input1.equalsIgnoreCase("yes")) {
 
                 System.out.print("Finding ability : ");
-                String ability = sc4.nextLine();
+                String ability = sc.nextLine();
                 System.out.print("value : ");
-                String valueAbility = sc5.nextLine();
+                String valueAbility = sc.nextLine();
                 System.out.println();
 
                 switch (ability) {
@@ -410,6 +462,38 @@ public class assignmentaotDania {
                 break;
             }
         }
+    }
+
+    public void chooseSoldier(){
+        System.out.print("Choose a soldier: ");
+       soldierChose = sc.nextLine();
+        for (int i = 0; i < list.size(); i++) {
+            String s = list.show(i).getName();
+            if(s.equalsIgnoreCase(soldierChose)){
+
+                String name = list.show(i).getName();
+                String height = list.show(i).getHeight();
+                String weight = list.show(i).getWeight();
+                String strength = list.show(i).getStrength();
+                String agility = list.show(i).getAgility();
+                String intel = list.show(i).getIntel();
+                String coor = list.show(i).getCoor();
+                String lead = list.show(i).getLead();
+                characteristics character = new characteristics(name, height, weight, strength, agility, intel, coor, lead);
+                listSoldier.add(0, character);
+
+            }
+
+
+        }
+        StrengthSoldier = Integer.parseInt(listSoldier.show(0).getStrength());
+        AgilitySoldier = Integer.parseInt(listSoldier.show(0).getAgility());
+        CoorSoldier = Integer.parseInt(listSoldier.show(0).getCoor());
+        IntelSoldier = Integer.parseInt(listSoldier.show(0).getIntel());
+        sumStrengthAgility = StrengthSoldier + AgilitySoldier;
+
+        System.out.println("");
+        System.out.println("Value of " + soldierChose + "'s strength + agility : " + sumStrengthAgility);
     }
 }
 
