@@ -34,7 +34,9 @@ public class shortestPath {
     // between source vertex and destination vertex
     public void printShortestDistance(
             ArrayList<ArrayList<Integer>> adj,
-            int s, int dest, int v)
+            int s, int dest, int v, int AgilitySoldier,
+            int CoorSoldier,
+             int time)
     {
         int pred[] = new int[v];
         int dist[] = new int[v];
@@ -60,16 +62,27 @@ public class shortestPath {
         System.out.println("Shortest path length is: " + dist[dest]);
 
         // Print path
+//        If coordination < 5 pass building, time = 3, else if coordination < 8, time = 2, else
+//        time =1;
+//        If intelligence < 5 pass titan, time = 3, else if intelligence < 8, time = 2, else time
+//            =1;
+//        If agility < 5, pass tree, time = 3, else if agility < 8, time = 2, else time =1;
         System.out.print("Path is ::");
         for (int i = path.size() - 1; i >= 0; i--) {
             System.out.print(path.get(i) + "->");
             if(buildingNodes.contains(path.get(i))) {
-                System.out.print("Building detected!");
+                if(CoorSoldier < 5) time +=3;
+                else if(CoorSoldier <8) time+=2;
+                else time+=1;
+                System.out.print("pass Building");
                 isBuilding = true;
             }
 
             else if(TreeNodes.contains(path.get(i))) {
-                System.out.print("Tree detected!");
+                if(AgilitySoldier < 5) time +=3;
+                else if(AgilitySoldier <8) time+=2;
+                else time+=1;
+                System.out.print("pass Tree");
                 isTree = true;
             }
 

@@ -2,8 +2,9 @@ package Q25;
 
 import java.util.Scanner;
 
-public class Main25 {
-    public static void main(String[] args) {
+public class marleyWord {
+
+    public marleyWord() {
         MyHashMap<String, String> myHashMap = new MyHashMap<String, String>();
         characterDictionary(myHashMap);
 
@@ -24,7 +25,31 @@ public class Main25 {
 
         System.out.println("Your encrypted text is: " + cipher_text);
         System.out.println("Unencrypted text: " + caesarCipherDecrypter(cipher_text, offsetCharacter));
+
     }
+
+//    public static void main(String[] args) {
+//        MyHashMap<String, String> myHashMap = new MyHashMap<String, String>();
+//        characterDictionary(myHashMap);
+//
+//        Scanner keyboard = new Scanner(System.in);
+//        System.out.print("Enter Marley sentence: ");
+//        String inputtedString = keyboard.nextLine();
+//
+//        String encryptedToParadis = encryptToParadis(inputtedString, myHashMap);
+//
+//        System.out.println("Your Paradis word is: " + encryptedToParadis);
+//
+//        System.out.print("Please input the number of characters you want to offset from the Marley sentence: " );
+//        int offsetCharacter = keyboard.nextInt();
+//
+//        keyboard.close();
+//
+//        String cipher_text = caesarCipherEncrypter(inputtedString, offsetCharacter);
+//
+//        System.out.println("Your encrypted text is: " + cipher_text);
+//        System.out.println("Unencrypted text: " + caesarCipherDecrypter(cipher_text, offsetCharacter));
+//    }
 
     public static String encryptToParadis(String inputtedString, MyHashMap<String, String> myHashMap) {
         char[] inputtedStringArray = inputtedString.toCharArray();

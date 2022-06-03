@@ -57,7 +57,7 @@ public class generateTitan {
         for(int i=0; i< data.size();i++){
             pq.add(data.get(i));
         }
-        System.out.println(pq);
+
         return pq;
 
     }
