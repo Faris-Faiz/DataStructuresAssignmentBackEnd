@@ -67,7 +67,7 @@ public class SortList<E> {
             }
         }
     }
-
+    //to show the element in list
     public int show(int index) {
         Node temp = head;
         for (int i = 0; i < index; i++) {
@@ -92,7 +92,7 @@ public class SortList<E> {
         }
         System.out.println();
     }
-
+    
     public void clear() {
         head = tail = null;
         size = 0;
