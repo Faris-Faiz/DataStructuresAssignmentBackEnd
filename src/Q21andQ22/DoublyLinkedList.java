@@ -88,7 +88,7 @@ public class DoublyLinkedList<E> {
         Node<E> tmp = head;
         //head.next become a head
         head = head.next;
-        //set pointer of prev of new head to be nul
+        //set pointer of prev of new head to be null
         if (head != null)
             head.prev = null;
         //reduce number of node
@@ -110,25 +110,32 @@ public class DoublyLinkedList<E> {
         System.out.println("removed");
         return tmp.element;
     }
-
+    //add element in list based on index
     public void add(int index, E element) {
+        //if index 0, addFirst method is called
         if (index == 0) {
             addFirst(element);
-        } else if (index >= size) {
+        } //if index is >= size, addLast method is called
+        else if (index >= size) {
             addLast(element);
         } else {
+            
             Node<E> current = head;
             for (int i = 1; i < index; i++) {
+                //assigns the next to current
                 current = current.next;
             }
+            //creates temp node and point it to the next node
             Node<E> temp = current.next;
+            //assigns the new element as next
             current.next = new Node<E>(element);
             (current.next).next = temp;
+            //increases size
             size++;
             System.out.println("added");
         }
     }
-
+    //remove the element based on index
     public E remove(int index) {
         E element = null;
         if (index < 0 || index >= size)
@@ -138,15 +145,21 @@ public class DoublyLinkedList<E> {
         else if (index == size - 1)
             element = removeLast();
         else {
+            //asigns head as temporary node
             Node<E> temp = head;
+            //iterates the list until index
             for (int i = 0; i < index; i++) {
+                //assigns next temporary as temporary, the last temp will be at the index
                 temp = temp.next;
             }
+            //the temp element assigned as element
             element = temp.element;
+            //to delete the temp
             temp.next.prev = temp.prev;
             temp.prev.next = temp.next;
             temp.next = null;
             temp.prev = null;
+            //decreases size
             size--;
         }
 
@@ -157,19 +170,22 @@ public class DoublyLinkedList<E> {
         head = tail = null;
         size = 0;
     }
-
+    //to show element based on index
     public E show(int index) {
         if (index < 0 || index >= size) {
             throw new IndexOutOfBoundsException();
         }
+        //assign head as temp
         Node<E> temp = head;
+        //iterates until element of index found as assigned as temp
         for (int i = 0; i < index; i++) {
             temp = temp.next;
         }
+        //to return element
         E element = temp.element;
         return element;
     }
-
+    //to check if list contains element
     public boolean contains(E e) {
         Node<E> current = head;
         while (current != null) {
