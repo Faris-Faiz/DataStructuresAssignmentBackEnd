@@ -122,7 +122,7 @@ public class MainScreen extends JFrame {
                 labelPic.setIcon(wallImage);
             }
         });
-    }
+    option1Button.addMouseListener(new MouseAdapter() { } );}
 
     public static void main(String[] args) {
         MainScreen frame = new MainScreen();
