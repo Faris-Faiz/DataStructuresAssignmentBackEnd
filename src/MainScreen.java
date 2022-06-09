@@ -6,7 +6,9 @@ import Q26.WallofMaria;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Scanner;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import javax.swing.ImageIcon;
 
 // This is the GUI version of the Main File
 public class MainScreen extends JFrame {
@@ -15,14 +17,23 @@ public class MainScreen extends JFrame {
     private JButton option3Button;
     private JButton option4Button;
     private JPanel panelMain;
+    private JLabel labelPic;
+
+    ImageIcon titleImage = new ImageIcon("title.png");
+    ImageIcon mapImage = new ImageIcon("map.png");
+    ImageIcon wallImage = new ImageIcon("wall.png");
+    ImageIcon cipherImage = new ImageIcon("cipher.png");
 
     public MainScreen() {
 
         setContentPane(panelMain);
         setTitle("World of Titan");
-        setSize(450,300);
+        setSize(800,800);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setVisible(true);
+
+        labelPic.setText("");
+        labelPic.setIcon(titleImage);
 
         option1Button.addActionListener(new ActionListener() {
             @Override
@@ -72,9 +83,43 @@ public class MainScreen extends JFrame {
         option4Button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                labelPic.setIcon(wallImage);
                 //q2.6
                 WallofMaria wall = new WallofMaria();
                 //System.exit(0); // exits the program
+            }
+        });
+
+        // Hover Mouse
+        option1Button.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                super.mouseEntered(e);
+                labelPic.setIcon(titleImage);
+            }
+        });
+
+        option2Button.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                super.mouseEntered(e);
+                labelPic.setIcon(mapImage);
+            }
+        });
+
+        option3Button.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                super.mouseEntered(e);
+                labelPic.setIcon(cipherImage);
+            }
+        });
+
+        option4Button.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                super.mouseEntered(e);
+                labelPic.setIcon(wallImage);
             }
         });
     }
