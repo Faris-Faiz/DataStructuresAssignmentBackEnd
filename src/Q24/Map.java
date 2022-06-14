@@ -25,6 +25,9 @@ public class Map {
     private int v;
     private int time =0;
 
+    public int getTime() {
+        return time;
+    }
 
     public Map() {
     }
@@ -165,6 +168,7 @@ public class Map {
 
 
                     path.printShortestDistance(adj, titan.getPath()[j - 1], titan.getLocation(), v,AgilitySoldier, CoorSoldier,time);
+                    time = path.getTime();
 
 
 
@@ -172,8 +176,10 @@ public class Map {
                 time++;
 
             }
+
             //reset time back to 0
             time = 0;
+            System.out.println("Titan is killed");
 
             System.out.println();
 
