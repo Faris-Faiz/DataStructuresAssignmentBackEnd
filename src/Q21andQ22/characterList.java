@@ -12,10 +12,15 @@ import java.io.IOException;
  */
 public class characterList {
     Scanner sc = new Scanner(System.in);
+    //listchar is to store the splitted string into a list
     private DoublyLinkedList<String> listchar = new DoublyLinkedList<String>();
+    //list is to store the characteristics of the characters
     private DoublyLinkedList<characteristics> list = new DoublyLinkedList<characteristics>();
+    //CList is to store the characteristics based on highest value for sorting Q2.2
     private SortList<characteristics> CList = new SortList<characteristics>();
+    //List2 is to store the CList to make sure the sorted characteristics not printed twice
     private DoublyLinkedList<characteristics> List2 = new DoublyLinkedList<characteristics>();
+    //listSoldier is to store the chosen soldier for 2.3
     private DoublyLinkedList<characteristics> listSoldier = new DoublyLinkedList<characteristics>();
     private int StrengthSoldier ;
     private int AgilitySoldier ;
@@ -56,7 +61,7 @@ public class characterList {
 
 
 
-
+    //to write and read the file based on new characters entered
     public void readFile() throws IOException{
 
         FileWriter out = new FileWriter("ereh.txt", true);
@@ -72,6 +77,7 @@ public class characterList {
         Scanner sc6 = new Scanner(System.in);
         System.out.println("------Eren's Allies------");
         System.out.println();
+        
         while (true) {
             System.out.println();
 
@@ -88,15 +94,16 @@ public class characterList {
                 System.out.println("Enter Characteristics (height, weight, strength, agility, intelligence, coordination, leadership) : ");
                 String input1 = sc2.nextLine();
                 int i2 = 0;
+                
                 //to split the characteristics and store into listchar
-
+                
                 for (String s : input1.split(" ")) {
 
                     i2++;
                     listchar.add(i2, s);
 
                 }
-
+                //to remove the listchar based on index and assign to the String Characteristics
                 System.out.println();
                 String height = listchar.remove(0);
                 String weight = listchar.remove(0);
@@ -107,8 +114,9 @@ public class characterList {
                 String lead = listchar.remove(0);
 
                 characteristics character = new characteristics(name, height, weight, strength, agility, intel, coor, lead);
-                //add the object to the list
+                //add the characteristics to the list
                 list.add(i, character);
+                //write to the text file to store the characteristics
                 outFile.print(name);
                 outFile.print(" " + height);
                 outFile.print(" " + weight);
@@ -131,9 +139,11 @@ public class characterList {
         }
 
     }
-
+    
+    //print out soldiers available
     public void printList() {
 
+        
         System.out.println("------Soldiers Available------");
         try {
 
@@ -146,6 +156,8 @@ public class characterList {
                 int i2 = 0;
                 int i = 0;
                 listchar.clear();
+                
+                //to split the characteristics and store into listchar
                 for (String s : data.split(" ")) {
 
 
@@ -155,7 +167,8 @@ public class characterList {
 
                 }
                 String name = listchar.remove(0) + " " + listchar.remove(0);
-
+                
+                //to remove the listchar based on index and assign to the String Characteristics
                 String height = listchar.remove(0);
                 String weight = listchar.remove(0);
                 String strength = listchar.remove(0);
@@ -176,10 +189,13 @@ public class characterList {
         }
 
     }
-
+    //to sort the ability of the characters
     public void sortAbility() {
+        
+         //use switch case to sort abilty
         while (true) {
-
+            
+            //clears every list if sorting is looped so it wont print previous 
             List2.clear();
             CList.clear();
 
@@ -191,19 +207,23 @@ public class characterList {
                 String attribute = sc.nextLine();
                 System.out.println();
                 System.out.println("Sorting from highest to lowest : \n");
+                
+                //uses switch case to sort ability based on user input
                 switch (attribute) {
                     case "height":
                         for (int k = 0; k < list.size(); k++) {
+                            //converts the string in the list for the selected attribute into int and add to CList
                             int height = Integer.parseInt(list.show(k).getHeight());
                             CList.addNode(height);
                         }
+                        //sorts the attribute highest value first
                         CList.sortList();
-                        //CList.display();
+                        //to print out the CList
                         for (int i = 0; i < list.size(); i++) {
                             for (int j = 0; j < list.size(); j++) {
+                                
                                 if (CList.show(i) == Integer.parseInt(list.show(j).getHeight())) {
-                                    //String printed = "";
-                                    //System.out.println(list.show(j));
+                                    //to make sure it wont print the same attribute twice
                                     if (!List2.contains(list.show(j))) {
                                         System.out.println(list.show(j).getName() + " " + CList.show(i));
 
@@ -359,7 +379,7 @@ public class characterList {
             }
         }
     }
-
+    //to search ability of characters
     public void searchAbility(){
         while (true) {
             List2.clear();
@@ -374,6 +394,7 @@ public class characterList {
                 String valueAbility = sc.nextLine();
                 System.out.println();
 
+                //use switch case to search for ability and based on its value
                 switch (ability) {
                     case "height":
                         System.out.println("soldier : ");
@@ -463,14 +484,14 @@ public class characterList {
             }
         }
     }
-
+    //To choose a soldier for q2.3 and display its strength and agility
     public void chooseSoldier(){
         System.out.print("Choose a soldier: ");
        soldierChose = sc.nextLine();
         for (int i = 0; i < list.size(); i++) {
             String s = list.show(i).getName();
             if(s.equalsIgnoreCase(soldierChose)){
-
+                //to assign the each character in list as string and add into another listsoldier
                 String name = list.show(i).getName();
                 String height = list.show(i).getHeight();
                 String weight = list.show(i).getWeight();
@@ -486,6 +507,7 @@ public class characterList {
 
 
         }
+        //converts the string attribute into int to be calculated
         StrengthSoldier = Integer.parseInt(listSoldier.show(0).getStrength());
         AgilitySoldier = Integer.parseInt(listSoldier.show(0).getAgility());
         CoorSoldier = Integer.parseInt(listSoldier.show(0).getCoor());
@@ -496,4 +518,6 @@ public class characterList {
         System.out.println("Value of " + soldierChose + "'s strength + agility : " + sumStrengthAgility);
     }
 }
+
+
 

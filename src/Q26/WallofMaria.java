@@ -19,6 +19,14 @@ public class WallofMaria {
         List<List<Integer>> list = new LinkedList<>();
         LinkedList<Integer> bigList = new LinkedList<>();
 
+        System.out.println("\n" +
+                "Captain Erwin captures information that the Armored Titan and Colossal Titan \n" +
+                "will try to break the Wall of Maria again. They also knew their enemy had obtained the wall\n" +
+                "building structure of Wall of Maria, and they will break the weakest part of the wall.\n" +
+                "From the figure, that weakest part of the wall will be at index 9, which only cuts\n" +
+                "through one wall. Help Captain Erwin to find the weakest part of the wall so that he\n" +
+                "can assign soldiers to guard the part of the wall.\n");
+
         System.out.print("Enter number of layers: ");
         Scanner input = new Scanner(System.in);
         int layers = input.nextInt();

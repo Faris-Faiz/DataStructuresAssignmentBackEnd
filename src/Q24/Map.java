@@ -207,7 +207,10 @@ public class Map {
                 {0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 1, 0}};
 
         int start = 0;
-
+        System.out.println("\n" +
+                "Captain Erwin gets the information from the garrison which there are some titans\n" +
+                "invading the wall. Find out one point that can search all the points without any\n" +
+                "repeating on the points. Then, getting back to that starting point\n");
         System.out.print("Enter Starting Point: ");
         Scanner input = new Scanner(System.in);
         start = input.nextInt();
