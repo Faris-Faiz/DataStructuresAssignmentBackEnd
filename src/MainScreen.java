@@ -60,7 +60,6 @@ public class MainScreen extends JFrame {
                 map.createTitans(1);
                 //q2.4
                 map.killTitans(list.getSoldierChose(), list.getSumStrengthAgility(), list.getAgilitySoldier(), list.getCoorSoldier());
-                //System.exit(0); // exits the program
             }
         });
         option2Button.addActionListener(new ActionListener() {
@@ -69,24 +68,22 @@ public class MainScreen extends JFrame {
                 //q2.3
                 Map map = new Map();
                 map.scoutWall();
-                //System.exit(0); // exits the program
             }
         });
         option3Button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //q2.5
-                marleyWord word = new marleyWord();
-                System.exit(0); // exits the program
+                labelPic.setIcon(wallImage);
+                //q2.6
+                WallofMaria wall = new WallofMaria();
             }
         });
         option4Button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                labelPic.setIcon(wallImage);
-                //q2.6
-                WallofMaria wall = new WallofMaria();
-                //System.exit(0); // exits the program
+                //q2.5
+                marleyWord word = new marleyWord();
+                System.exit(0); // exits the program
             }
         });
 
@@ -111,7 +108,7 @@ public class MainScreen extends JFrame {
             @Override
             public void mouseEntered(MouseEvent e) {
                 super.mouseEntered(e);
-                labelPic.setIcon(cipherImage);
+                labelPic.setIcon(wallImage);
             }
         });
 
@@ -119,10 +116,10 @@ public class MainScreen extends JFrame {
             @Override
             public void mouseEntered(MouseEvent e) {
                 super.mouseEntered(e);
-                labelPic.setIcon(wallImage);
+                labelPic.setIcon(cipherImage);
             }
         });
-    option1Button.addMouseListener(new MouseAdapter() { } );}
+}
 
     public static void main(String[] args) {
         MainScreen frame = new MainScreen();

@@ -9,7 +9,15 @@ public class marleyWord {
         characterDictionary(myHashMap);
 
         Scanner keyboard = new Scanner(System.in);
-        System.out.print("Enter Marley sentence: ");
+
+        System.out.println("\n" +
+                "Eren had finally returned to his home to open the door to the basement in his house. \n" +
+                "Eren successfully gets the information from his father, Grisha. \n" +
+                "But all the information is in Marley's sentences.\n" +
+                "However, Eren found a dictionary in the book rack that is a Marley translation-based dictionary. \n"+
+                "The figures shows the character translation and the grammar symbols in Marley word provided by Eren.");
+
+        System.out.print("\nEnter Marley sentence: ");
         String inputtedString = keyboard.nextLine();
 
         String encryptedToParadis = encryptToParadis(inputtedString, myHashMap);
