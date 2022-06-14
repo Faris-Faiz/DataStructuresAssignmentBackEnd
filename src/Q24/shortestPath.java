@@ -11,6 +11,11 @@ public class shortestPath {
     private  LinkedList<Integer> path;
     private boolean isBuilding;
     private boolean isTree;
+    private int time;
+
+    public int getTime() {
+        return time;
+    }
 
     public boolean isBuilding() {
         return isBuilding;
@@ -59,7 +64,7 @@ public class shortestPath {
             path.add(pred[crawl]);
             crawl = pred[crawl];
         }
-        System.out.println("Shortest path length is: " + dist[dest]);
+
 
         // Print path
 //        If coordination < 5 pass building, time = 3, else if coordination < 8, time = 2, else
@@ -74,16 +79,18 @@ public class shortestPath {
                 if(CoorSoldier < 5) time +=3;
                 else if(CoorSoldier <8) time+=2;
                 else time+=1;
-                System.out.print("pass Building");
+                System.out.print("(pass Building)");
                 isBuilding = true;
+                this.time = time;
             }
 
             else if(TreeNodes.contains(path.get(i))) {
                 if(AgilitySoldier < 5) time +=3;
                 else if(AgilitySoldier <8) time+=2;
                 else time+=1;
-                System.out.print("pass Tree");
+                System.out.print("(pass Tree)");
                 isTree = true;
+                this.time = time;
             }
 
         }
